@@ -11,15 +11,22 @@ namespace MoodAnalyzerMSUnitTest
         {
             this.message = message;
         }
-        public string MoodAnalyser(string message)
+        public string MoodAnalyser()
         {
-            if (message.Contains("happy"))
+            try
+            {
+                if (this.message.Contains("happy"))
+                {
+                    return "HAPPY";
+                }
+                else
+                {
+                    return "SAD";
+                }
+            }
+            catch
             {
                 return "HAPPY";
-            }
-            else
-            {
-                return "SAD";
             }
         }
     }
