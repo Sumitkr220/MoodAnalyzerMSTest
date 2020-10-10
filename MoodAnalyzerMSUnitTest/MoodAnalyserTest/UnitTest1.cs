@@ -19,14 +19,34 @@ namespace MoodAnalyserTest
         }
 
         [TestMethod]
-        public void TestMethod2()
+        public void Given_EMPTY_Mood_Should_Throw_MoodAnalyzerCustomException() 
         {
-            string expected = "HAPPY";
-            MoodAnalyse moodAnalyse = new MoodAnalyse(null);
-
-            string mood = moodAnalyse.MoodAnalyser();
-
-            Assert.AreEqual(expected, mood);
+            try
+            {
+                string message ="";
+                MoodAnalyse moodAnalyse = new MoodAnalyse(message);
+                string mood = moodAnalyse.MoodAnalyser();
+            }
+            catch (MoodAnalyzerCustomException e)
+            {
+                Assert.AreEqual("Mood should not be Empty", e.Message);
+            }
         }
+
+        [TestMethod]
+        public void Given_NULL_Mood_Should_Throw_MoodAnalyzerCustomException()
+        {
+            try
+            {
+                string message = null;
+                MoodAnalyse moodAnalyse = new MoodAnalyse(message);
+                string mood = moodAnalyse.MoodAnalyser();
+            }
+            catch (MoodAnalyzerCustomException e)
+            {
+                Assert.AreEqual("Mood should not be null", e.Message);
+            }
+        }
+
     }
 }

@@ -13,20 +13,25 @@ namespace MoodAnalyzerMSUnitTest
         }
         public string MoodAnalyser()
         {
-            try
+           try
             {
-                if (this.message.Contains("happy"))
+                if(message.Length==0)
                 {
-                    return "HAPPY";
+                    throw new MoodAnalyzerCustomException(MoodAnalyzerCustomException.ExceptionType.EMPTY_MESSAGE, "Mood should not be Empty");
                 }
-                else
+
+                else if(message.Contains("Sad"))
                 {
                     return "SAD";
                 }
+                else
+                {
+                    return "HAPPY";
+                }
             }
-            catch
+            catch(NullReferenceException)
             {
-                return "HAPPY";
+                throw new MoodAnalyzerCustomException(MoodAnalyzerCustomException.ExceptionType.NULL_MESSAGE, "Mood should not be null");
             }
         }
     }
