@@ -7,46 +7,22 @@ namespace MoodAnalyserTest
     public class UnitTest1
     {
         [TestMethod]
-        public void TestMethod1()
+        public void GivenMoodAnalyseClassName_ShouldReturnMoodAnalyseObject()
         {
-            string expected = "HAPPY";
-            string message = "This is happy hour";
-            MoodAnalyse moodAnalyse = new MoodAnalyse(message);
-            
-            string mood = moodAnalyse.MoodAnalyser();
+            string message = null;
+            object expected = new MoodAnalyse(message);
+            object obj = MoodAnalyserFactory.CreateMoodAnalyser("MoodAnalyzerMSUnitTest.MoodAnalyse", "MoodAnalyse");
+            //expected.Equals(obj);
+            Assert.AreEqual(expected.GetType(), obj.GetType());
 
-            Assert.AreEqual(expected,mood);   
         }
 
         [TestMethod]
-        public void Given_EMPTY_Mood_Should_Throw_MoodAnalyzerCustomException() 
+        public void GivenMoodAnalyseClassName_ShouldReturnMoodAnalyseObject_UsingParameterizedConstructor()
         {
-            try
-            {
-                string message ="";
-                MoodAnalyse moodAnalyse = new MoodAnalyse(message);
-                string mood = moodAnalyse.MoodAnalyser();
-            }
-            catch (MoodAnalyzerCustomException e)
-            {
-                Assert.AreEqual("Mood should not be Empty", e.Message);
-            }
+            object expected = new MoodAnalyse("HAPPY");
+            object obj = MoodAnalyserFactory.CreateMoodAnalyseUsingParameterizedConstructor("MoodAnalyzerMSUnitTest.MoodAnalyse", "MoodAnalyse", "SAD");
+            expected.Equals(obj);
         }
-
-        [TestMethod]
-        public void Given_NULL_Mood_Should_Throw_MoodAnalyzerCustomException()
-        {
-            try
-            {
-                string message = null;
-                MoodAnalyse moodAnalyse = new MoodAnalyse(message);
-                string mood = moodAnalyse.MoodAnalyser();
-            }
-            catch (MoodAnalyzerCustomException e)
-            {
-                Assert.AreEqual("Mood should not be null", e.Message);
-            }
-        }
-
     }
 }

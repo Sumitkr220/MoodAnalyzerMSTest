@@ -11,6 +11,10 @@ namespace MoodAnalyzerMSUnitTest
         {
             this.message = message;
         }
+        public MoodAnalyse()
+        {
+
+        }
         public string MoodAnalyser()
         {
            try
@@ -19,7 +23,6 @@ namespace MoodAnalyzerMSUnitTest
                 {
                     throw new MoodAnalyzerCustomException(MoodAnalyzerCustomException.ExceptionType.EMPTY_MESSAGE, "Mood should not be Empty");
                 }
-
                 else if(message.Contains("Sad"))
                 {
                     return "SAD";
